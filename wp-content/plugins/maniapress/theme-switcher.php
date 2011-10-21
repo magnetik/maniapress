@@ -26,7 +26,10 @@ register_activation_hook(__FILE__, 'maniapress_theme_switcher_activate');
 
 function maniapress_check_user_agent()
 {
-	//return true;
+	if(array_key_exists('maniapress', $_GET))
+	{
+		return (bool) $_GET['maniapress'];
+	}
 	return ManiaLib\Application\Filters\UserAgentCheck::isManiaplanet();
 }
 
