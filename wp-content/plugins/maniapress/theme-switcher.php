@@ -6,23 +6,11 @@
   Version: beta
   Author: Nadeo
   Author URI: http://www.nadeo.com
+  Tags: ubisoft, nadeo, maniaplanet, trackmania, shootmania, questmania, manialink
   License: LGPL v3
  */
 
 require_once __DIR__.'/core.php';
-
-function maniapress_theme_switcher_activate()
-{
-	require_once ABSPATH.'wp-admin/includes/plugin.php';
-	
-	if(!is_plugin_active('maniapress/core.php'))
-	{
-		$message = 'It seems the ManiaPress Core plugin is not activated. Please <strong>activate the ManiaPress Core plugin</strong> before using other components of ManiaPress';
-		trigger_error($message, E_USER_ERROR);
-	}
-}
-
-register_activation_hook(__FILE__, 'maniapress_theme_switcher_activate');
 
 function maniapress_check_user_agent()
 {

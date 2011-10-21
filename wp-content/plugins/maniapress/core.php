@@ -17,5 +17,4 @@ define('MANIAPRESS_THEME_PATH',
 define('APP_PATH', MANIAPRESS_CORE_PATH);
 
 require_once MANIAPRESS_CORE_PATH.'libraries/autoload.php';
-
 ?>
