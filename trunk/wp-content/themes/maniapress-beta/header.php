@@ -83,7 +83,7 @@ Manialink::beginFrame(-100, 90, 0.1);
 		$ui->save();
 	}
 	Manialink::endFrame();
-
+	
 	Manialink::beginFrame(145, -8.5, 0.1);
 	{
 		$ui = new \ManiaLib\Gui\Elements\Entry(40, 5);
