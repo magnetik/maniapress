@@ -12,7 +12,7 @@
 
 define('APP_PATH', __DIR__.'/');
 
-require_once APP_PATH.'libraries/autoload.php';
+// TODO MANIAPRESS Add check to see if ManiaPress Core is enabled
 
 function maniapress_get_bloginfo($show = '')
 {
