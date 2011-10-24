@@ -10,7 +10,7 @@
   License: LGPL v3
  */
 
-require_once __DIR__.'/core.php';
+require_once __DIR__.'/maniapress-core/maniapress-core.php';
 
 function maniapress_check_user_agent()
 {
