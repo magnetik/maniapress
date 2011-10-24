@@ -2,7 +2,7 @@
 /*
   Plugin Name: ManiaPress Core
   Plugin URI: http://code.google.com/p/maniapress/
-  Description: This plugin is part of ManiaPress: a suite to display your WordPress install directly in Maniaplanet. This plugin needs to be activated before you use other plugins or the theme.
+  Description: This plugin is part of ManiaPress: a suite to display your WordPress install directly in Maniaplanet. No need to activated, files are automatically required.
   Version: beta
   Author: Nadeo
   Author URI: http://www.nadeo.com
@@ -18,4 +18,6 @@ define('MANIAPRESS_THEME_PATH',
 define('APP_PATH', MANIAPRESS_CORE_PATH);
 
 require_once MANIAPRESS_CORE_PATH.'libraries/autoload.php';
+require_once MANIAPRESS_CORE_PATH.'config.php';
+
 ?>

@@ -31,7 +31,14 @@ Manialink::appendScript('main() {');
 
 $ui = new Quad(320, 180);
 $ui->setAlign('center', 'center');
-$ui->setImage('bg.jpg');
+if(MANIAPRESS_THEME_BACKGROUND)
+{
+	$ui->setImage(MANIAPRESS_THEME_BACKGROUND, true);
+}
+else
+{
+	$ui->setImage('bg.jpg');
+}
 $ui->save();
 
 $ui = new \ManiaLib\Gui\Elements\Bgs1InRace(202, 200);
@@ -43,17 +50,17 @@ $ui->save();
 Manialink::beginFrame(-100, 90, 0.1);
 {
 	$ui = new Quad(200, 28);
-	$ui->setBgcolor('fff');
+	$ui->setBgcolor(MANIAPRESS_THEME_HEADER_BGCOLOR);
 	$ui->save();
 
 	$ui = new \ManiaLib\Gui\Elements\Quad(200, 145);
 	$ui->setPosition(0, -28, 0);
-	$ui->setBgcolor('fffa');
+	$ui->setBgcolor(MANIAPRESS_THEME_CONTENT_BGCOLOR);
 	$ui->save();
 
 	$ui = new \ManiaLib\Gui\Elements\Quad(200, 7);
 	$ui->setPosition(0, -173, 0);
-	$ui->setBgcolor('fff');
+	$ui->setBgcolor(MANIAPRESS_THEME_FOOTER_BGCOLOR);
 	$ui->save();
 
 	Manialink::beginFrame(10, -5.5, 0.1);
