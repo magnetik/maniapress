@@ -1,0 +1,74 @@
+#summary Step-by-step guide to use ManiaPress on your WordPress install
+#labels Featured
+
+= Introduction =
+
+ManiaPress is a suite of plugins and theme to display your WordPress install directly in Maniaplanet.
+
+= Demo =
+
+This URL is the Maniaplanet Blog: http://blog.maniaplanet.com/
+Now try to paste that URL in the address bar of the Manialink browser in Maniaplanet.
+
+= Components =
+
+ManiaPress consists of:
+  * *ManiaPress Core plugin*: shared config and libraries
+  * *ManiaPress Theme Switcher plugin*: automatically selects the ManiaPress Theme when viewing from Maniaplanet, so your install can be both a Manialink and a Website at the same time
+  * *ManiaPress Theme*: a theme to display WP as a Manialink
+  * *ManiaPress Event Publisher*: automatically post an Event to ManiaHome whenever you publish a post so that everyone that bookmarked your Manialink is kept posted
+
+= Features =
+
+todo
+
+= Requirements =
+
+ * *WordPress 3.0* or higher
+ * *PHP 5.3* or or higher
+ * (optional) cURL extension (http://php.net/manual/en/book.curl.php)
+ * (optional) JSON extension (http://php.net/manual/en/book.json.php)
+ * (optional) You must be able to make HTTPS requests on ws.maniaplanet.com
+
+= Prerequisite: create a Manialink code =
+
+It's better to have your own Manialink code to you can use the Bookmark button and the Event Publisher.
+
+  * Let's say your blog URL is http://www.example.com
+  * Login with your Maniaplanet account on http://player.maniaplanet.com
+  * Go to *Manialinks*
+  * Create a code. The "URL of the XML file" is your blog URL.
+
+For example, the Manialink code *maniaplanetblog* points to http://blog.maniaplanet.com
+
+= Installation =
+
+Unzip the maniapress package directly in your WordPress install. The zip contains the same directory structure as WordPress:
+
+{{{
+wp-content/
+   plugins/
+      maniapress-code/
+         ...
+      maniapress-theme-switcher.php
+      maniapress-event-publisher.php
+   themes/
+      maniapress/
+         ...
+}}}
+
+Now you have two choices:
+
+   * *You want your WP install to act only as a Manialink*: enable the *ManiaPress Theme* in the WP Admin panel
+   * *You want your WP install to act as both a Manialink and a Website* depending on where it is viewed from: enable the *ManiaPress Theme Switcher* plugin
+
+By now, you should have a basic ManiaPress install working. Let's now see a couple of important configuration options.
+
+= Basic configuration =
+
+Work in progress
+
+
+
+
+
