@@ -10,7 +10,7 @@
   License: LGPL v3
  */
 
-define('MANIAPRESS_THEME', 'maniapress-beta');
+define('MANIAPRESS_THEME', 'maniapress');
 define('MANIAPRESS_CORE_PATH', ABSPATH.'/wp-content/plugins/maniapress-core/');
 define('MANIAPRESS_THEME_PATH',
 	ABSPATH.'/wp-content/themes/'.MANIAPRESS_THEME.'/');
