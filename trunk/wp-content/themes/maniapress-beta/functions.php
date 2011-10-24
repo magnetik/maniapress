@@ -10,7 +10,9 @@
  * @date        $Date$:
  */
 
-define('APP_PATH', __DIR__.'/');
+require_once ABSPATH.'wp-content/plugins/maniapress-core/maniapress-core.php';
+
+require_once __DIR__.'/include/config.php';
 
 // TODO MANIAPRESS Add check to see if ManiaPress Core is enabled
 
