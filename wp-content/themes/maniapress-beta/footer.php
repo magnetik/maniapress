@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ManiaPress: a suite to display your WordPress install directly in Maniaplanet.
  * 
@@ -9,7 +10,6 @@
  * @author      $Author$:
  * @date        $Date$:
  */
-
 use ManiaLib\Gui\Manialink;
 use ManiaLib\Gui\Elements\Label;
 use ManiaLib\Gui\Elements\Icons64x64_1;
@@ -24,6 +24,26 @@ Manialink::beginFrame(-100, -83, 0.2);
 	$ui->setText(sprintf('$<$000%s$> is proudly powered by WordPress and ManiaPress.',
 			maniapress_get_bloginfo('name')));
 	$ui->save();
+
+	if(MANIAPRESS_CORE_MANIALINK)
+	{
+		Manialink::beginFrame(150, 1.5, 0.1);
+		{
+			$params['url'] = MANIAPRESS_CORE_MANIALINK;
+			if(MANIAPRESS_CORE_MANIALINK_NAME)
+			{
+				$params['name'] = MANIAPRESS_CORE_MANIALINK_NAME;
+			}
+			$url = 'http://maniahome.maniaplanet.com/add/?'.http_build_query($params);
+			
+			$ui = new \ManiaLib\Gui\Elements\IncludeManialink();
+			$ui->setUrl($url);
+			$ui->save();
+		}
+		Manialink::endFrame();
+	}
+
+
 
 	Manialink::beginFrame(188, -1, 0.1);
 	{
