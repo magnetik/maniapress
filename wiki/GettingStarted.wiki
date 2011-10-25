@@ -1,6 +1,10 @@
 #summary Step-by-step guide to use ManiaPress on your WordPress install
 #labels Featured
 
+= Table of contents =
+
+<wiki:toc max_depth="2" />
+
 = Introduction =
 
 ManiaPress is a suite of plugins and theme to display your WordPress install directly in Maniaplanet.
