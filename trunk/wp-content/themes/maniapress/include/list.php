@@ -12,7 +12,7 @@
 
 use ManiaLib\Gui\Manialink;
 use ManiaLib\Gui\Elements\Label;
-
+ 
 if(have_posts())
 {
 	$layout = new \ManiaLib\Gui\Layouts\Column();
