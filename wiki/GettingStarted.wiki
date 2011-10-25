@@ -70,7 +70,7 @@ By now, you should have a basic ManiaPress install working. Let's now see a coup
 
 The first thing you will want to configure is your Manialink code. *If you set your Manialink code in the config, the ManiaHome bookmark button will automatically appear on your Manialink*.
 
-To do that, you need (for now) to edit wp-content/plugins/maniapress-core/config.php (either manually or with the plugin editor in WP-Admin).
+To do that, you need (for now) to edit `wp-content/plugins/maniapress-core/config.php` (either manually or with the plugin editor in WP-Admin).
 
 The first option in that file is the manialink code:
 {{{
@@ -82,7 +82,53 @@ Then you can also set the display name so that it appears prettier with special 
 define('MANIAPRESS_CORE_MANIALINK_NAME', '$3cf$oManiaplanet$z Blog');
 }}}
 
+== Navigation menu ==
 
+ManiaPress Theme uses WP's built-in navigation menu system to handle it's navigation menu. *To customize the navigation menu on your Manialink, just create a navigation menu called "manialink"*.
 
+== Theme customization ==
 
+You can customize a bit the theme by editing `wp-content/themes/maniapress/include/config.php`
+You can change:
+  * The background image (note that it will be streched to the full size of Maniaplanet's window)
+  * The background color of the header
+  * The background color of the content
+  * The background color of the footer
 
+Colors use the 3 hex chars + 1 alpha hex char. See http://tutorials.mania-creative.com/tm2_general_formattingtext/index-eng-1#colours
+
+== ManiaHome Event Publishing ==
+
+The Event Publishing is a really important feature. It will *automatically notify the players that bookmarked your Manialink when you publish a new Post by sending a public Event to ManiaHome*.
+
+It's a bit long, but it's not complicated. Let's see how to set it up, step-by-step.
+
+=== 1. Create API credentials ===
+
+The event publisher uses the Maniaplanet Web Services API, so you need credentials to use that API. 
+
+  * Connect with your account on http://developers.maniaplanet.com/webservices/
+  * Click on "Create a new API user"
+  * Follow the instructions
+
+=== 2. Authorize your API user to post event for your Manialink ===
+
+Now that you have an API user, you need to allow it to post events for your Manialink.
+
+  * Launch Maniaplanet
+  * Go to the "Maniahome" manialink
+  * Go to Manager > Your Manialinks and click on your Manialink
+  * Go to API
+  * Enter your API username and click "update"
+
+=== 3. Configure ManiaPress ===
+
+You need to edit `wp-content/plugins/maniapress-core/config.php` At the end of the file:
+{{{
+define('MANIAPRESS_CORE_API_USERNAME', 'gouxim|my_manialink');
+define('MANIAPRESS_CORE_API_PASSWORD', 'my_password');
+}}}
+
+=== 4. Enable the plugin ===
+
+Now you can enable the ManiaPress Event Publisher plugin. When you publish a new post, and event will be automatically sent to ManiaHome and seen by everyone who bookmarked your Manialink! 
