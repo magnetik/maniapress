@@ -72,7 +72,37 @@ function maniapress_html_decode($input)
 
 function maniapress_html_filter($input)
 {
-	$input = strip_tags($input);
+	if(!$input)
+	{
+		return '';
+	}
+	
+	$xslt = <<<'XSLT'
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+	<xsl:output method="text"  encoding="utf-8" />
+	<xsl:template match="h1|h2">$&lt;$o<xsl:apply-templates/>$&gt;&#10;</xsl:template>
+	<xsl:template match="h3|h4|h5|h6">$&lt;$o$n<xsl:apply-templates/>$&gt;&#10;</xsl:template>
+	<xsl:template match="b|strong|em">$&lt;$o<xsl:apply-templates/>$&gt;</xsl:template>
+	<xsl:template match="i">$&lt;$i<xsl:apply-templates/>$&gt;</xsl:template>
+	<xsl:template match="p"><xsl:apply-templates/>&#10;</xsl:template>
+	<xsl:template match="a">$&lt;$l[<xsl:value-of select="@href"/>]<xsl:apply-templates/>$l$&gt;</xsl:template>
+	<xsl:template match="img">$&lt;$l<xsl:value-of select="@src"/>$l$&gt;</xsl:template>
+	<xsl:template match="span|font"><xsl:apply-templates/></xsl:template>
+</xsl:stylesheet>
+XSLT;
+	
+	$doc = new DOMDocument('1.0', 'UTF-8');
+	$doc->loadHTML($input);
+
+	$xsl = new DOMDocument('1.0', 'UTF-8');
+	$xsl->loadXML($xslt);
+
+	$proc = new XSLTProcessor();
+	$proc->importStylesheet($xsl);
+
+	$input = $proc->transformToXml($doc);
+	
 	return $input;
 }
 

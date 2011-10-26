@@ -48,10 +48,10 @@ if(have_posts())
 			$ui = new Label(190);
 			$ui->setPosition(0, -9);
 			$ui->enableAutonewline();
-			$ui->setMaxline(5);
+			$ui->setMaxline(4);
 			$ui->setTextColor('000');
 			$ui->setTextSize(2);
-			$ui->setText(maniapress_html_filter(get_the_excerpt()));
+			$ui->setText(maniapress_html_filter(get_the_content('')));
 			$ui->save();
 		}
 		Manialink::endFrame();
