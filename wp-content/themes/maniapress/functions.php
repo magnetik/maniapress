@@ -12,10 +12,6 @@
 
 require_once ABSPATH.'wp-content/plugins/maniapress-core/maniapress-core.php';
 
-require_once __DIR__.'/include/config.php';
-
-// TODO MANIAPRESS Add check to see if ManiaPress Core is enabled
-
 function maniapress_get_bloginfo($show = '')
 {
 	return htmlspecialchars_decode(get_bloginfo($show, 'display'), ENT_QUOTES);

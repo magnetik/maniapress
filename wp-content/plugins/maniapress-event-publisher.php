@@ -7,7 +7,7 @@
   Author: Nadeo
   Author URI: http://www.nadeo.com
   Tags: ubisoft, nadeo, maniaplanet, trackmania, shootmania, questmania, manialink
-  License: LGPL v3 
+  License: LGPL v3
  */
 
 require_once __DIR__.'/maniapress-core/maniapress-core.php';
@@ -20,8 +20,10 @@ function maniapress_event_publisher_hook($post)
 
 	try
 	{
-		$maniahome = new \Maniaplanet\WebServices\ManiaHome(MANIAPRESS_CORE_API_USERNAME,
-				MANIAPRESS_CORE_API_PASSWORD, MANIAPRESS_CORE_MANIALINK);
+		$maniahome = new \Maniaplanet\WebServices\ManiaHome(
+				maniapress_get_option('api-username'),
+				maniapress_get_option('api-password'),
+				maniapress_get_option('manialink'));
 		$maniahome->postPublicNotification($notification);
 	}
 	catch(\Maniaplanet\WebServices\Exception $e)

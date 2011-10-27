@@ -9,50 +9,27 @@
  * @author      $Author$:
  * @date        $Date$:
  */
-
-use ManiaLib\Gui\Manialink;
 use ManiaLib\Gui\Elements\Label;
 
-get_header('single');
+get_header('page');
 
 if(have_posts())
 {
 	the_post();
-
-	Manialink::beginFrame(-95, 47, 0.2);
-	Manialink::setFrameId('post-'.get_the_ID());
-	{
-		$ui = new Label(190);
-		$ui->setScale(1.5);
-		$ui->setStyle(Label::TextButtonBig);
-		$ui->setText(the_title('$000', '', false));
-		$ui->save();
-
-		$ui = new Label(190);
-		$ui->setPosition(0, -12);
-		$ui->enableAutonewline();
-		$ui->setMaxline(21);
-		$ui->setTextColor('000');
-		$ui->setTextSize(2);
-		$ui->setText(maniapress_html_filter(get_the_content()));
-		$ui->save();
-
-		$ui = new \ManiaLib\Gui\Elements\Button();
-		$ui->setHalign('center');
-		$ui->setPosition(95, -120, 0.1);
-		$ui->setStyle(\ManiaLib\Gui\Elements\Button::CardButtonSmallWide);
-		$ui->setUrl(ManiaLib\Utils\URI::getCurrent());
-		$ui->setText('View the full page on the Web');
-		$ui->save();
-	}
-	Manialink::endFrame();
+	get_template_part('content', 'single');
 }
 else
 {
-	// Apologies, but no results were found for the requested archive. Perhaps searching will help find a related post.
+	$ui = new Label(120 / 1.5);
+	$ui->setScale(1.5);
+	$ui->setHalign('center');
+	$ui->setPosition(0, 40, 0.2);
+	$ui->enableAutonewline();
+	$ui->setStyle(Label::TextButtonSmall);
+	$ui->setText('Apologies, but no results were found for the requested archive. Perhaps searching will help find a related post.');
+	$ui->save();
 }
 
-get_sidebar('single');
-
-get_footer('single');
+get_sidebar('page');
+get_footer('page');
 ?>
