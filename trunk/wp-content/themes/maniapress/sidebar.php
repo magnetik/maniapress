@@ -10,9 +10,6 @@
  * @date        $Date$:
  */
 
-use ManiaLib\Gui\Manialink;
-use ManiaLib\Gui\Elements\Quad;
-use ManiaLib\Gui\Elements\Label;
-
+// No sidebar support for now :(
 
 ?>

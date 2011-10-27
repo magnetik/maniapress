@@ -25,14 +25,14 @@ Manialink::beginFrame(-100, -83, 0.2);
 			maniapress_get_bloginfo('name')));
 	$ui->save();
 
-	if(MANIAPRESS_CORE_MANIALINK)
+	if(maniapress_get_option('manialink'))
 	{
 		Manialink::beginFrame(150, 1.5, 0.1);
 		{
-			$params['url'] = MANIAPRESS_CORE_MANIALINK;
-			if(MANIAPRESS_CORE_MANIALINK_NAME)
+			$params['url'] = maniapress_get_option('manialink');
+			if(maniapress_get_option('manialink-name'))
 			{
-				$params['name'] = MANIAPRESS_CORE_MANIALINK_NAME;
+				$params['name'] = maniapress_get_option('manialink-name');
 			}
 			$url = 'http://maniahome.maniaplanet.com/add/?'.http_build_query($params);
 			
