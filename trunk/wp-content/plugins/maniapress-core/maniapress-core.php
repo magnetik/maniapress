@@ -3,7 +3,7 @@
   Plugin Name: ManiaPress Core
   Plugin URI: http://code.google.com/p/maniapress/
   Description: This plugin is part of ManiaPress: a suite to display your WordPress install directly in Maniaplanet. No need to activate it, files are automatically required.
-  Version: beta
+  Version: beta2
   Author: Nadeo
   Author URI: http://www.nadeo.com
   Tags: ubisoft, nadeo, maniaplanet, trackmania, shootmania, questmania, manialink
