@@ -18,7 +18,7 @@ Manialink::setFrameId('post-'.get_the_ID());
 {
 	$ui = new Label(190);
 	$ui->setStyle(Label::TextButtonMedium);
-	$ui->setText(the_title('$000', '', false));
+	$ui->setText('$000'.maniapress_html_filter(the_title('', '', false)));
 	$ui->setManialink(get_permalink());
 	$ui->save();
 

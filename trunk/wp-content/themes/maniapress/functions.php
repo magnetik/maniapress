@@ -73,6 +73,13 @@ function maniapress_html_filter($input)
 		return '';
 	}
 	
+	$input = htmlentities($input, ENT_QUOTES | ENT_IGNORE | ENT_HTML401, 'UTF-8', false);
+	$input = str_ireplace(array('&lt;', '&gt;', '&quot;', '&#039;', '$'),array('<','>', '"', "'", '$$'), $input);
+	
+	// uncomment to debug input
+	//header("Content-type: text/plain; charset=UTF-8");
+	//echo($input);exit;
+	
 	$xslt = <<<'XSLT'
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
