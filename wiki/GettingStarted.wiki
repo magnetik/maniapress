@@ -70,21 +70,11 @@ Now you have two choices:
 
 By now, you should have a basic ManiaPress install working. Let's now see a couple of important configuration options.
 
+To configure ManiaPress, go to *WP-Admin > Settings > ManiaPress* _(new in beta2)_
+
 == Bookmark button ==
 
 The first thing you will want to configure is your Manialink code. *If you set your Manialink code in the config, the ManiaHome bookmark button will automatically appear on your Manialink*.
-
-To do that, you need (for now) to edit `wp-content/plugins/maniapress-core/config.php` (either manually or with the plugin editor in WP-Admin).
-
-The first option in that file is the manialink code:
-{{{
-define('MANIAPRESS_CORE_MANIALINK', 'maniaplanetblog');
-}}}
-
-Then you can also set the display name so that it appears prettier with special formatting characters ; *use single quotes to avoid PHP errors, and don't forget to put a backslash before any single quote in the display name!*:
-{{{
-define('MANIAPRESS_CORE_MANIALINK_NAME', '$3cf$oManiaplanet$z Blog');
-}}}
 
 == Navigation menu ==
 
@@ -92,9 +82,8 @@ ManiaPress Theme uses WP's built-in navigation menu system to handle it's naviga
 
 == Theme customization ==
 
-You can customize a bit the theme by editing `wp-content/themes/maniapress/include/config.php`
-You can change:
-  * The background image (note that it will be streched to the full size of Maniaplanet's window)
+You can customize a bit the theme. You can change:
+  * The background image or color (note that it will be streched to the full size of Maniaplanet's window)
   * The background color of the header
   * The background color of the content
   * The background color of the footer
@@ -127,11 +116,7 @@ Now that you have an API user, you need to allow it to post events for your Mani
 
 === 3. Configure ManiaPress ===
 
-You need to edit `wp-content/plugins/maniapress-core/config.php` At the end of the file:
-{{{
-define('MANIAPRESS_CORE_API_USERNAME', 'gouxim|my_manialink');
-define('MANIAPRESS_CORE_API_PASSWORD', 'my_password');
-}}}
+Go to the ManiaPress config page and edit the settings. If the "API Test" says "Success", you're good to go! 
 
 === 4. Enable the plugin ===
 
