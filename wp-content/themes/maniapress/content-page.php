@@ -19,7 +19,7 @@ Manialink::setFrameId('post-'.get_the_ID());
 	$ui = new Label(190);
 	$ui->setScale(1.5);
 	$ui->setStyle(Label::TextButtonBig);
-	$ui->setText(the_title('$000', '', false));
+	$ui->setText('$000'.maniapress_html_filter(the_title('', '', false)));
 	$ui->save();
 
 	$ui = new Label(190);
