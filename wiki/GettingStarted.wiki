@@ -106,13 +106,7 @@ The event publisher uses the Maniaplanet Web Services API, so you need credentia
 
 === 2. Authorize your API user to post event for your Manialink ===
 
-Now that you have an API user, you need to allow it to post events for your Manialink.
-
-  * Launch Maniaplanet
-  * Go to the "Maniahome" manialink
-  * Go to Manager > Your Manialinks and click on your Manialink
-  * Go to API
-  * Enter your API username and click "update"
+For events to be posted, you only need the API user and the Manialink to be owned by the same player. If you created both, you have nothing to do!
 
 === 3. Configure ManiaPress ===
 
