@@ -13,6 +13,9 @@
 use ManiaLib\Gui\Manialink;
 use ManiaLib\Gui\Elements\Label;
 use ManiaLib\Gui\Elements\Icons64x64_1;
+use ManiaLib\ManiaScript\UI;
+use ManiaLib\ManiaScript\Action;
+use ManiaLib\ManiaScript\Event;
 
 Manialink::beginFrame(-100, -83, 0.2);
 {
@@ -21,7 +24,7 @@ Manialink::beginFrame(-100, -83, 0.2);
 	$ui->setPosition(3, -3.5, 0);
 	$ui->setScale(0.75);
 	$ui->setStyle(Label::TextInfoSmall);
-	$ui->setText(sprintf('$<$000%s$> is proudly powered by WordPress and ManiaPress.',
+	$ui->setText(sprintf('$<$000%s$> is proudly powered by $l[http://wordpress.org/]WordPress$l and $l[http://code.google.com/p/maniapress/]ManiaPress$l.',
 			maniapress_get_bloginfo('name')));
 	$ui->save();
 
@@ -35,15 +38,13 @@ Manialink::beginFrame(-100, -83, 0.2);
 				$params['name'] = maniapress_get_option('manialink-name');
 			}
 			$url = 'http://maniahome.maniaplanet.com/add/?'.http_build_query($params);
-			
+
 			$ui = new \ManiaLib\Gui\Elements\IncludeManialink();
 			$ui->setUrl($url);
 			$ui->save();
 		}
 		Manialink::endFrame();
 	}
-
-
 
 	Manialink::beginFrame(188, -1, 0.1);
 	{
@@ -54,11 +55,10 @@ Manialink::beginFrame(-100, -83, 0.2);
 		//$ui->setUrl(ManiaLib\Utils\URI::getCurrent());
 		$ui->save();
 
-		Manialink::appendScript(sprintf('manialib_ui_autotip2("view-external", "%s"); ',
-				addslashes('Visit the Website')));
-		Manialink::appendScript(sprintf('manialib_ui_dialog2("view-external", "%s", "external", "%s");',
-				addslashes('Do you want to open your Web browser to visit this Website?'),
-				addslashes(\ManiaLib\Utils\URI::getCurrent())));
+		UI::tooltip('view-external', 'Visit the Website');
+		UI::dialog('view-external',
+			'Do you want to open your Web browser to visit this Website?',
+			array(Action::external, \ManiaLib\Utils\URI::getCurrent()));
 
 		$ui = new Icons64x64_1(5);
 		$ui->setPosition(5.5);
@@ -68,10 +68,9 @@ Manialink::beginFrame(-100, -83, 0.2);
 		//$ui->setManialink(ManiaLib\Utils\URI::getCurrent());
 		$ui->save();
 
-		Manialink::appendScript(sprintf('manialib_ui_autotip2("refresh-button", "%s");',
-				addslashes('Refresh')));
-		Manialink::appendScript(sprintf('manialib_ui_addlink("refresh-button", "%s");',
-				addslashes(\ManiaLib\Utils\URI::getCurrent())));
+		UI::tooltip('refresh-button', 'Refresh');
+		Event::addListener('refresh-button', Event::mouseClick,
+			array(Action::manialink, \ManiaLib\Utils\URI::getCurrent()));
 	}
 	Manialink::endFrame();
 }
