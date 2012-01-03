@@ -15,8 +15,6 @@ define('MANIAPRESS_CORE_PATH', ABSPATH.'/wp-content/plugins/maniapress-core/');
 define('MANIAPRESS_THEME_PATH',
 	ABSPATH.'/wp-content/themes/'.MANIAPRESS_THEME.'/');
 
-define('APP_PATH', MANIAPRESS_CORE_PATH);
-
 require_once MANIAPRESS_CORE_PATH.'libraries/autoload.php';
 
 function maniapress_get_option($name, $default = null)
