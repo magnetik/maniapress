@@ -56,8 +56,7 @@ Manialink::beginFrame(-100, -83, 0.2);
 		$ui->save();
 
 		UI::tooltip('view-external', 'Visit the Website');
-		UI::dialog('view-external',
-			'Do you want to open your Web browser to visit this Website?',
+		Event::addListener('view-external', Event::mouseClick,
 			array(Action::external, \ManiaLib\Utils\URI::getCurrent()));
 
 		$ui = new Icons64x64_1(5);
@@ -76,7 +75,8 @@ Manialink::beginFrame(-100, -83, 0.2);
 }
 Manialink::endFrame();
 
-Manialink::appendScript('manialib_main_loop();}');
+\ManiaLib\ManiaScript\Main::loop();
+\ManiaLib\ManiaScript\Main::end();
 
 Manialink::render();
 ?>

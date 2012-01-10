@@ -24,10 +24,7 @@ $ui = new \ManiaLib\Gui\Elements\IncludeManialink();
 $ui->setUrl('manialib.xml', false);
 $ui->save();
 
-$ui = new ManiaLib\Gui\Cards\ManiaScriptStandardElements();
-$ui->save();
-
-Manialink::appendScript('main() {');
+\ManiaLib\ManiaScript\Main::begin();
 
 $background = maniapress_get_option('theme-background');
 

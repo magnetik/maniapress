@@ -3,7 +3,7 @@
   Plugin Name: ManiaPress Theme Switcher
   Plugin URI: http://code.google.com/p/maniapress/
   Description: This plugin is part of ManiaPress: a suite to display your WordPress install directly in Maniaplanet. This plugin automatically selects the ManiaPress theme when accessing a page in the Manialink browser of Maniaplanet, based on the User Agent.
-  Version: beta2
+  Version: 0.3
   Author: Nadeo
   Author URI: http://www.nadeo.com
   Tags: ubisoft, nadeo, maniaplanet, trackmania, shootmania, questmania, manialink

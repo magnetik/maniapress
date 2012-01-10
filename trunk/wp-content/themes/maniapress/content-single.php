@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ManiaPress: a suite to display your WordPress install directly in Maniaplanet.
  * 
@@ -9,10 +10,9 @@
  * @author      $Author$:
  * @date        $Date$:
  */
-
 use ManiaLib\Gui\Manialink;
 use ManiaLib\Gui\Elements\Label;
-
+use ManiaLib\ManiaScript\UI;
 
 Manialink::beginFrame(-95, 47, 0.2);
 Manialink::setFrameId('post-'.get_the_ID());
@@ -20,7 +20,7 @@ Manialink::setFrameId('post-'.get_the_ID());
 	$ui = new Label(190);
 	$ui->setScale(1.5);
 	$ui->setStyle(Label::TextButtonBig);
-	$ui->setText('$000'.maniapress_html_filter(the_title('', '', false)));//
+	$ui->setText('$000'.maniapress_html_filter(the_title('', '', false))); //
 	$ui->save();
 
 	Manialink::beginFrame(153, 1, 0.1);
@@ -38,9 +38,7 @@ Manialink::setFrameId('post-'.get_the_ID());
 		$ui->setId('comments-count');
 		$ui->save();
 
-		Manialink::appendScript(sprintf(
-				'manialib_ui_autotip2("comments-count", "%s");',
-				'Read the comments on the Web'));
+		UI::tooltip('comments-count', 'Read the comments on the Web');
 
 		$ui = new \ManiaLib\Gui\Elements\BgRaceScore2(13, 13);
 		$ui->setPosition(25, 1.75, 0.1);
