@@ -3,7 +3,7 @@
   Plugin Name: ManiaPress Event Publisher
   Plugin URI: http://code.google.com/p/maniapress/
   Description: This plugin is part of ManiaPress: a suite to display your WordPress install directly in Maniaplanet. This plugin automatically sends an Event to Maniaplanet's ManiaHome so that people that bookmarked your Manialink will be notified.
-  Version: 0.3
+  Version: 0.3.1
   Author: Nadeo
   Author URI: http://www.nadeo.com
   Tags: ubisoft, nadeo, maniaplanet, trackmania, shootmania, questmania, manialink
