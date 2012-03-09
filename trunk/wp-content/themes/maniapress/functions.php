@@ -1,7 +1,7 @@
 <?php
 /**
  * ManiaPress: a suite to display your WordPress install directly in Maniaplanet.
- * 
+ *
  * @see         http://code.google.com/p/maniapress/
  * @copyright   Copyright (c) 2011-2012 NADEO (http://www.nadeo.com)
  * @license     http://www.gnu.org/licenses/lgpl.html LGPL License 3
@@ -72,29 +72,34 @@ function maniapress_html_filter($input)
 	{
 		return '';
 	}
-	
+
 	$input = htmlentities($input, ENT_QUOTES | ENT_IGNORE | ENT_HTML401, 'UTF-8', false);
 	$input = str_ireplace(array('&lt;', '&gt;', '&quot;', '&#039;', '$'),array('<','>', '"', "'", '$$'), $input);
-	
+
+	// removing \n \t
+	$input = strtr($input, array("\n" => null, "\t" => null));
+
 	// uncomment to debug input
 	//header("Content-type: text/plain; charset=UTF-8");
 	//echo($input);exit;
-	
+
 	$xslt = <<<'XSLT'
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 	<xsl:output method="text"  encoding="utf-8" />
-	<xsl:template match="h1|h2">$&lt;$o<xsl:apply-templates/>$&gt;&#10;</xsl:template>
-	<xsl:template match="h3|h4|h5|h6">$&lt;$o$n<xsl:apply-templates/>$&gt;&#10;</xsl:template>
-	<xsl:template match="b|strong|em">$&lt;$o<xsl:apply-templates/>$&gt;</xsl:template>
-	<xsl:template match="i">$&lt;$i<xsl:apply-templates/>$&gt;</xsl:template>
-	<xsl:template match="p"><xsl:apply-templates/>&#10;</xsl:template>
-	<xsl:template match="a">$&lt;$l[<xsl:value-of select="@href"/>]<xsl:apply-templates/>$l$&gt;</xsl:template>
-	<xsl:template match="img">$&lt;$l<xsl:value-of select="@src"/>$l$&gt;</xsl:template>
+	<xsl:template match="h1|h2"><xsl:text>$&lt;$o</xsl:text><xsl:apply-templates/><xsl:text>$&gt;&#10;</xsl:text></xsl:template>
+	<xsl:template match="h3|h4|h5|h6"><xsl:text>$&lt;$o$n</xsl:text><xsl:apply-templates/><xsl:text>$&gt;&#10;</xsl:text></xsl:template>
+	<xsl:template match="b|strong|em"><xsl:text>$&lt;$o</xsl:text><xsl:apply-templates/><xsl:text>$&gt;</xsl:text></xsl:template>
+	<xsl:template match="i"><xsl:text>$&lt;$i</xsl:text><xsl:apply-templates/><xsl:text>$&gt;</xsl:text></xsl:template>
+	<xsl:template match="p"><xsl:text>&#10;</xsl:text><xsl:apply-templates/><xsl:text>&#10;</xsl:text></xsl:template>
+	<xsl:template match="a"><xsl:text>$&lt;$l[</xsl:text><xsl:value-of select="@href"/><xsl:text>]</xsl:text><xsl:apply-templates/><xsl:text>$l$&gt;</xsl:text></xsl:template>
+	<xsl:template match="img"><xsl:text>$&lt;$l[</xsl:text><xsl:value-of select="@src"/><xsl:text>]</xsl:text><xsl:value-of select="@alt"/><xsl:text>$l$&gt;</xsl:text></xsl:template>
 	<xsl:template match="span|font"><xsl:apply-templates/></xsl:template>
+	<xsl:template match="li"><xsl:text>&#10;* </xsl:text><xsl:apply-templates/></xsl:template>
+	<xsl:template match="ul"><xsl:apply-templates/><xsl:text>&#10;</xsl:text></xsl:template>
 </xsl:stylesheet>
 XSLT;
-	
+
 	$doc = new DOMDocument('1.0', 'UTF-8');
 	$doc->loadHTML($input);
 
@@ -105,7 +110,7 @@ XSLT;
 	$proc->importStylesheet($xsl);
 
 	$input = $proc->transformToXml($doc);
-	
+
 	return $input;
 }
 
