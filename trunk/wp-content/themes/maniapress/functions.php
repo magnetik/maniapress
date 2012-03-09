@@ -93,10 +93,21 @@ function maniapress_html_filter($input)
 	<xsl:template match="i"><xsl:text>$&lt;$i</xsl:text><xsl:apply-templates/><xsl:text>$&gt;</xsl:text></xsl:template>
 	<xsl:template match="p"><xsl:text>&#10;</xsl:text><xsl:apply-templates/><xsl:text>&#10;</xsl:text></xsl:template>
 	<xsl:template match="a"><xsl:text>$&lt;$l[</xsl:text><xsl:value-of select="@href"/><xsl:text>]</xsl:text><xsl:apply-templates/><xsl:text>$l$&gt;</xsl:text></xsl:template>
-	<xsl:template match="img"><xsl:text>$&lt;$l[</xsl:text><xsl:value-of select="@src"/><xsl:text>]</xsl:text><xsl:value-of select="@alt"/><xsl:text>$l$&gt;</xsl:text></xsl:template>
+	<xsl:template match="img"><xsl:text>$&lt;$l[</xsl:text><xsl:value-of select="@src"/><xsl:text>]</xsl:text><xsl:choose><xsl:when test="string-length(@alt)>0"><xsl:value-of select="@alt"/></xsl:when><xsl:when test="string-length(@title)>0"><xsl:value-of select="@title"/></xsl:when><xsl:otherwise><xsl:call-template name="getBaseName"><xsl:with-param name="filename" select="@src" /></xsl:call-template></xsl:otherwise></xsl:choose><xsl:text>$l$&gt;</xsl:text></xsl:template>
 	<xsl:template match="span|font"><xsl:apply-templates/></xsl:template>
 	<xsl:template match="li"><xsl:text>&#10;* </xsl:text><xsl:apply-templates/></xsl:template>
 	<xsl:template match="ul"><xsl:apply-templates/><xsl:text>&#10;</xsl:text></xsl:template>
+	<xsl:template name="getBaseName">
+        <xsl:param name="filename" />
+            <xsl:if test="not(contains($filename,'/'))">
+                <xsl:value-of select="$filename"/>
+            </xsl:if>
+            <xsl:if  test="contains($filename,'/')">
+                <xsl:call-template name="getBaseName">
+                    <xsl:with-param name="filename" select="substring-after($filename,'/')"/>
+                </xsl:call-template>
+            </xsl:if>
+    </xsl:template>
 </xsl:stylesheet>
 XSLT;
 
