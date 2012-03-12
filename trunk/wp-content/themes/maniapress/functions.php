@@ -9,7 +9,6 @@
  * @author      $Author$:
  * @date        $Date$:
  */
-
 require_once ABSPATH.'wp-content/plugins/maniapress-core/maniapress-core.php';
 
 function maniapress_get_bloginfo($show = '')
@@ -20,7 +19,7 @@ function maniapress_get_bloginfo($show = '')
 function maniapress_posts_per_page($query)
 {
 	$query->query_vars['posts_per_page'] = 4;
-    return $query;
+	return $query;
 }
 
 function maniapress_get_categories($postId)
@@ -44,7 +43,7 @@ function maniapress_get_tags($postId)
 	$tags = get_the_tags($postId);
 	if($tags)
 	{
-		foreach ($tags as $key => $tag)
+		foreach($tags as $key => $tag)
 		{
 			$tags[$key] = sprintf('$h[%s]%s$h', get_tag_link($tag->term_id), $tag->name);
 		}
@@ -73,8 +72,10 @@ function maniapress_html_filter($input)
 		return '';
 	}
 
-	$input = htmlentities($input, ENT_QUOTES | ENT_IGNORE | ENT_HTML401, 'UTF-8', false);
-	$input = str_ireplace(array('&lt;', '&gt;', '&quot;', '&#039;', '$'),array('<','>', '"', "'", '$$'), $input);
+	$input = htmlentities($input, ENT_QUOTES | ENT_IGNORE | ENT_HTML401, 'UTF-8',
+		false);
+	$input = str_ireplace(array('&lt;', '&gt;', '&quot;', '&#039;', '$'),
+		array('<', '>', '"', "'", '$$'), $input);
 
 	// removing \n \t
 	$input = strtr($input, array("\n" => null, "\t" => null));
@@ -125,6 +126,23 @@ XSLT;
 	return $input;
 }
 
+function maniapress_google_analytics()
+{
+	$propertyId = maniapress_get_option('google-analytics-id');
+	if(!$propertyId)
+	{
+		return;
+	}
+
+	$tracker = new \ManiaLib\Application\Tracking\GoogleAnalytics($propertyId);
+	$tracker->loadFromConfig();
+
+	$ui = new \ManiaLib\Gui\Elements\Quad(0.01, 0.01);
+	$ui->setPosition(800, 600);
+	$ui->setImage($tracker->getTrackingURL(), true);
+	$ui->save();
+}
+
 // Configure WordPress
 add_filter('pre_get_posts', 'maniapress_posts_per_page');
 add_theme_support('menus');
@@ -132,5 +150,4 @@ add_theme_support('menus');
 // Configure ManiaLib
 $config = ManiaLib\Application\Config::getInstance();
 $config->mediaURL = get_bloginfo('template_directory').'/';
-
 ?>

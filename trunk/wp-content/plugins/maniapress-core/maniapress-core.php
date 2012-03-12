@@ -69,6 +69,9 @@ function maniapress_core_admin_init()
 	add_settings_field('maniapress-manialink-name', 'Manialink display name',
 		'maniapress_core_settings_manialink_name_input', 'maniapress-settings',
 		'maniapress-settings-general');
+	add_settings_field('maniapress-google-analytics-id', 'Google Analytics Web Property ID',
+		'maniapress_core_settings_googleanalytics_input', 'maniapress-settings',
+		'maniapress-settings-general');
 	add_settings_section('maniapress-settings-theme', 'Theme Settings',
 		'maniapress_core_settings_theme_text', 'maniapress-settings');
 	add_settings_field('maniapress-theme-background', 'Background',
@@ -99,6 +102,7 @@ function maniapress_core_settings_validate($settings)
 	$newsettings = array();
 	$newsettings['manialink'] = \ManiaLib\Utils\Arrays::get($settings, 'manialink');
 	$newsettings['manialink-name'] = \ManiaLib\Utils\Arrays::get($settings, 'manialink-name');
+	$newsettings['google-analytics-id'] = \ManiaLib\Utils\Arrays::get($settings, 'google-analytics-id');
 	$newsettings['api-username'] = \ManiaLib\Utils\Arrays::get($settings, 'api-username');
 	$newsettings['api-password'] = \ManiaLib\Utils\Arrays::get($settings, 'api-password');
 	$newsettings['theme-background'] = \ManiaLib\Utils\Arrays::get($settings, 'theme-background');
@@ -133,6 +137,20 @@ function maniapress_core_settings_manialink_name_input()
 		   class="regular-text code"/>
 	<span class="description">Display name of your Manialink on ManiaHome. You can
 		use special formatting characters (like in nicknames).</span>
+	<?php
+}
+
+function maniapress_core_settings_googleanalytics_input()
+{
+	?>
+	<input id="maniapress-google-analytics-id" name="maniapress-options[google-analytics-id]"
+		   size="25" type="text" value="<?php echo maniapress_get_option('google-analytics-id') ?>" 
+		   class="regular-text"/>
+	<span class="description">
+		Track visits on your Manialink in 
+		<a href="http://www.google.com/analytics/" target="_blank">Google Analytics</a>. 
+		Eg.:&nbsp;UA&#8209;12345678&#8209;9
+	</span>.
 	<?php
 }
 
