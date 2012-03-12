@@ -78,5 +78,7 @@ Manialink::endFrame();
 \ManiaLib\ManiaScript\Main::loop();
 \ManiaLib\ManiaScript\Main::end();
 
+maniapress_google_analytics();
+
 Manialink::render();
 ?>
